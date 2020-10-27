@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".view.MainActivity">
+
+    <TextView
+        android:id="@+id/quizApp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="@string/quiz_app"
+        android:textColor="@color/white"
+        android:textSize="25sp" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:elevation="5dp"
+        app:cardCornerRadius="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="10dp">
+
+            <TextView
+                android:id="@+id/welcome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:text="@string/welcome"
+                android:textAlignment="center"
+                android:textColor="#363A43"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/enterYourName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/please_enter_your_name"
+                android:textAlignment="center"
+                android:textColor="#7A8089"
+                android:textSize="16sp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/editText_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/name"
+                    android:textColor="#363A43"
+                    android:text="Belli"
+                    android:textColorHint="#7A8089" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/button_start"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="15dp"
+                android:text="@string/start" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+</LinearLayout>
