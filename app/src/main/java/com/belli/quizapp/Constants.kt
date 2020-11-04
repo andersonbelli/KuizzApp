@@ -1,13 +1,23 @@
 package com.belli.quizapp
 
+import android.app.Activity
+import android.app.AlertDialog
+import android.content.ContentValues
+import android.content.Context
+import android.location.Geocoder
+import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentActivity
 import com.belli.quizapp.model.Question
+import com.belli.quizapp.view.MainActivity
+import com.belli.quizapp.view.ui.login.LoginFragment
+
 
 object Constants {
 
     const val USER_NAME: String = "user_name"
     const val TOTAL_QUESTIONS: String = "total_question"
     const val CORRECT_ANSWERS: String = "correct_answers"
-
 
     fun getQuestions(): ArrayList<Question> {
         val questionsList = ArrayList<Question>()
@@ -62,5 +72,4 @@ object Constants {
 
         return questionsList
     }
-
 }

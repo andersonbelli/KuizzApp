@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "317793436395",
+    "firebase_url": "https://kuizzapp.firebaseio.com",
+    "project_id": "kuizzapp",
+    "storage_bucket": "kuizzapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:317793436395:android:f0c1f8c6caa374088bf4ae",
+        "android_client_info": {
+          "package_name": "com.belli.quizapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "317793436395-rrk4le5qqbj28js5c72ftbknmm007ob8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXFH-AOFHJpKCb1OO3DGTd_375L-AAuyw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "317793436395-rrk4le5qqbj28js5c72ftbknmm007ob8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
