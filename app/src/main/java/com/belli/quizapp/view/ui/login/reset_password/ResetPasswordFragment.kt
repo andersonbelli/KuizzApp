@@ -23,6 +23,17 @@ private const val DELAY_TIME: Long = 15000
 
 class ResetPasswordFragment : Fragment() {
 
+    private val handler: Handler =  Handler()
+
+    private val runnableStartTimer:Runnable = Runnable() {
+        run() {
+            requireView().chronometer_resetPassword_timer.visibility = View.GONE
+            requireView().button_resetPassword.isEnabled = true
+            requireView().chronometer_resetPassword_timer.stop()
+        }
+    }
+//    handler.postDelayed(myRunnable,zeit_dauer2);
+
     companion object {
         fun newInstance() = ResetPasswordFragment()
     }
@@ -52,10 +63,24 @@ class ResetPasswordFragment : Fragment() {
         requireActivity().layout_main_loading.visibility = View.VISIBLE
 
         when (buttonAction) {
-            "send code" -> delayToSendCode()
-//                sendCodeToEmail(requireView().editText_resetPassword_email.text.toString())
+            "send" -> {
+                delayToSendCode()
+                sendCodeToEmail(requireView().editText_resetPassword_email.text.toString())
+            }
             "send again" -> {
-                if (requireView().button_resetPassword.isEnabled) sendCodeToEmail(requireView().editText_resetPassword_email.text.toString())
+                if (requireView().button_resetPassword.isEnabled) {
+                    sendCodeToEmail(requireView().editText_resetPassword_email.text.toString())
+//                    try {
+//                        Tasks.await(sendCodeToEmail(requireView().editText_resetPassword_email.text.toString()), 2, TimeUnit.SECONDS)
+////                        taskResult.mapTo(ArrayList()) { containership.toObject(Containership::class.java) }, null)
+//                    } catch (e: ExecutionException) {
+//                        //TODO handle exception
+//                    } catch (e: InterruptedException) {
+//                        //TODO handle exception
+//                    } catch (e: TimeoutException) {
+//                        //TODO handle exception
+//                    }
+                }
             }
 //            "validate code" -> {
 //                if (
@@ -76,9 +101,11 @@ class ResetPasswordFragment : Fragment() {
     }
 
     private fun sendCodeToEmail(email: String) {
+        Log.w(TAG, "resetPassword0000000000")
+
         FirebaseControl.firebaseSendChangePasswordEmail(email).addOnCompleteListener { task ->
             Log.w(TAG, "resetPassword000: $task")
-            Log.w(TAG, "resetPassword111: ${task.result}")
+//            Log.w(TAG, "resetPassword111: ${task.result}")
 
             if (task.isComplete && requireActivity().layout_main_loading.visibility == View.VISIBLE) requireActivity().layout_main_loading.visibility =
                 View.GONE
@@ -91,6 +118,18 @@ class ResetPasswordFragment : Fragment() {
 
                 delayToSendCode()
             }
+        }.addOnFailureListener { exception ->
+            Log.e(TAG, "sendCodeToEmail: Error to send code: $exception")
+
+            requireView().chronometer_resetPassword_timer.visibility = View.GONE
+            requireView().button_resetPassword.isEnabled = true
+            requireView().chronometer_resetPassword_timer.stop()
+
+            requireView().textView_resetPassword_message.text =
+                "There was a problem to send the email\n Please, try again"
+
+            requireView().chronometer_resetPassword_timer.isCountDown = false
+            handler.removeCallbacks(runnableStartTimer)
         }
     }
 
@@ -104,15 +143,12 @@ class ResetPasswordFragment : Fragment() {
 
         requireView().chronometer_resetPassword_timer.visibility = View.VISIBLE
         requireView().chronometer_resetPassword_timer.isCountDown = true
-        requireView().chronometer_resetPassword_timer.base = SystemClock.elapsedRealtime() + DELAY_TIME
+        requireView().chronometer_resetPassword_timer.base =
+            SystemClock.elapsedRealtime() + DELAY_TIME
         requireView().chronometer_resetPassword_timer.start()
 
         // Set a delay in button to send new message
-        Handler().postDelayed(Runnable {
-            requireView().chronometer_resetPassword_timer.visibility = View.GONE
-            requireView().button_resetPassword.isEnabled = true
-            requireView().chronometer_resetPassword_timer.stop()
-        }, DELAY_TIME)
+        handler.postDelayed(runnableStartTimer, DELAY_TIME)
     }
 
     private fun validateCode(code: String) {

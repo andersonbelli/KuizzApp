@@ -1,20 +1,14 @@
 package com.belli.quizapp.view
 
-import android.app.AlertDialog
-import android.content.ContentValues
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
-import androidx.fragment.app.FragmentActivity
-import com.belli.quizapp.Constants
 import com.belli.quizapp.R
 import com.belli.quizapp.control.firebase.FirebaseControl
 import com.belli.quizapp.view.ui.login.LoginFragment
 import com.google.firebase.auth.FirebaseUser
-import kotlinx.android.synthetic.main.activity_main.*
 
 private const val TAG = "MainActivity"
 
@@ -38,6 +32,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun updateUI(currentUser: FirebaseUser?) {
         Log.w("MainActivity", "User status -> " + currentUser.toString())
+        Log.w("MainActivity", "User status - Uid -> " + currentUser?.uid.toString())
         if (currentUser == null) {
             supportFragmentManager
                 .beginTransaction()

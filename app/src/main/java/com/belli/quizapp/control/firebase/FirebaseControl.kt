@@ -2,6 +2,8 @@ package com.belli.quizapp.control.firebase
 
 import android.util.Log
 import com.google.android.gms.tasks.Task
+import com.google.firebase.FirebaseApp
+import com.google.firebase.FirebaseOptions
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -14,8 +16,13 @@ class FirebaseControl {
 
         private lateinit var auth: FirebaseAuth
 
+        private lateinit var firebase: FirebaseApp
+
         fun initFirebase() {
             auth = FirebaseAuth.getInstance()
+            firebase = FirebaseApp.getInstance()
+
+            Log.w(TAG, firebase.name.toString() + firebase.applicationContext.toString())
         }
 
         fun checkUserIsLoggedIn(): FirebaseUser? {
@@ -23,7 +30,6 @@ class FirebaseControl {
         }
 
         fun firebaseLogin(email: String, password: String): Task<AuthResult>? {
-            Log.w(TAG, "firebaseLogin: $email / $password")
             return auth.signInWithEmailAndPassword(email, password)
         }
 
@@ -32,6 +38,8 @@ class FirebaseControl {
         }
 
         fun firebaseSignOut() {
+            FirebaseAuth.getInstance().signOut()
+
             return auth.signOut()
         }
 

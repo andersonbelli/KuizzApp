@@ -9,8 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.QuizApp">
-        <activity android:name=".view.RegisterActivity"></activity>
-        <activity android:name=".view.LoginActivity" />
+        <activity android:name=".view.HomeActivity" />
         <activity
             android:name=".view.ResultActivity"
             android:screenOrientation="portrait"
@@ -19,7 +18,12 @@
         <activity
             android:name=".view.QuizQuestionActivity"
             android:screenOrientation="portrait"
+            android:theme="@style/NoActionBarTheme"
             android:windowSoftInputMode="adjustResize" />
+        <!--        <activity-->
+        <!--            android:name=".view.QuizQuestionActivity"-->
+        <!--            android:screenOrientation="portrait"-->
+        <!--            android:windowSoftInputMode="adjustResize" />-->
         <activity
             android:name=".view.MainActivity"
             android:screenOrientation="portrait"

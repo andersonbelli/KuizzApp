@@ -1,121 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.QuizQuestionActivity">
+    android:orientation="vertical">
 
-    <LinearLayout
+    <include layout="@layout/layout_toolbar" />
+
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:layout_height="match_parent"
+        >
+<!--        android:fitsSystemWindows="true"-->
 
-        <TextView
-            android:id="@+id/textView_question"
+        <!-- For fragments -->
+        <FrameLayout
+            android:id="@+id/fragmentLayout_question"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:gravity="center"
-            android:text="What country does this flag belong to?"
-            android:textColor="#363A43"
-            android:textSize="22sp" />
+            android:layout_height="match_parent" />
 
-        <ImageView
-            android:id="@+id/imageView_image"
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/navigation"
             android:layout_width="wrap_content"
-            android:layout_height="140dp"
-            android:layout_marginTop="16dp"
-            android:contentDescription="Flag image"
-            android:src="@drawable/ic_flag_india" />
-
-        <LinearLayout
-            android:id="@+id/linearLayout_progress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <ProgressBar
-                android:id="@+id/progressBar"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:indeterminate="false"
-                android:max="4"
-                android:minHeight="50dp"
-                android:progress="0" />
-
-            <TextView
-                android:id="@+id/textView_progress"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:padding="15dp"
-                android:textColor="#7A8089"
-                android:textSize="14sp"
-                tools:text="0/10" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/textView_optionOne"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@drawable/default_option_border_bg"
-            android:gravity="center"
-            android:padding="15dp"
-            android:textColor="#7A8089"
-            android:textSize="18sp"
-            tools:text="Apple" />
-
-        <TextView
-            android:id="@+id/textView_optionTwo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@drawable/default_option_border_bg"
-            android:gravity="center"
-            android:padding="15dp"
-            android:textColor="#7A8089"
-            android:textSize="18sp"
-            tools:text="Apple" />
-
-        <TextView
-            android:id="@+id/textView_optionThree"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@drawable/default_option_border_bg"
-            android:gravity="center"
-            android:padding="15dp"
-            android:textColor="#7A8089"
-            android:textSize="18sp"
-            tools:text="Apple" />
-
-        <TextView
-            android:id="@+id/textView_optionFour"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@drawable/default_option_border_bg"
-            android:gravity="center"
-            android:padding="15dp"
-            android:textColor="#7A8089"
-            android:textSize="18sp"
-            tools:text="Apple" />
-
-        <Button
-            android:id="@+id/button_submit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:text="@string/submit" />
-
-    </LinearLayout>
-
-</ScrollView>
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            app:menu="@menu/nav_items" />
+    </androidx.drawerlayout.widget.DrawerLayout>
+</LinearLayout>
